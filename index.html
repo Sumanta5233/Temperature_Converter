@@ -59,19 +59,25 @@
     </div>
 
     <script>
-        const inputTemp = document.getElementById("inputTemp");
-        const fromUnit = document.getElementById("fromUnit");
-        const resultC = document.getElementById("resultC");
-        const resultF = document.getElementById("resultF");
-        const resultK = document.getElementById("resultK");
+    const inputTemp = document.getElementById("inputTemp");
+    const fromUnit = document.getElementById("fromUnit");
+    const resultC = document.getElementById("resultC");
+    const resultF = document.getElementById("resultF");
+    const resultK = document.getElementById("resultK");
 
-        inputTemp.addEventListener("input", updateTemperatures);
-        fromUnit.addEventListener("change", updateTemperatures);
+    inputTemp.addEventListener("input", updateTemperatures);
+    fromUnit.addEventListener("change", updateTemperatures);
 
-        function updateTemperatures() {
-            const temperature = parseFloat(inputTemp.value);
-            const unit = fromUnit.value;
+    function updateTemperatures() {
+        const temperature = parseFloat(inputTemp.value);
+        const unit = fromUnit.value;
 
+        // Hide results by default
+        resultC.textContent = "";
+        resultF.textContent = "";
+        resultK.textContent = "";
+
+        if (!isNaN(temperature)) { // Check if the input is a valid number
             if (unit === "C") {
                 resultC.textContent = temperature;
                 resultF.textContent = (temperature * 9 / 5 + 32);
@@ -86,9 +92,11 @@
                 resultK.textContent = temperature;
             }
         }
-        hidden();
-        updateTemperatures();
-    </script>
+    }
+
+    // Call the function to hide results initially
+    updateTemperatures();
+</script>
 </body>
 
 </html>
